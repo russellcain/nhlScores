@@ -1,30 +1,15 @@
-// https://statsapi.web.nhl.com/api/v1/teams
-
 import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-
-
-// const useStyles = makeStyles(theme => ({
-//   container: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//   },
-//   textField: {
-//     marginLeft: theme.spacing(1),
-//     marginRight: theme.spacing(1),
-//     width: 200,
-//   },
-// }));
+import { obtainOneRosters } from '../actions/rosters';
 
 export class GameDetails extends React.Component {
   render() {
 
-  	//console.log("roosty", this.props.rosters.rosters, this.props.rosters.rosters.map(d => d.name))
+  	console.log("roosty", this.props.rosters.rosters, this.props.rosters.rosters.map(d => d.name))
 
     return(
 
@@ -35,10 +20,17 @@ export class GameDetails extends React.Component {
         */}
           {this.props.rosters.rosters.length > 0 
         ? this.props.rosters.rosters.map((team) => {
-          return <div>{team.name}</div>
+          return <Button onClick={()=> this.props.obtainOneRosters(team.id)}>{team.name}</Button>
         })
 
         : <div></div>}
+        {this.props.rosters.rosters.length > 0
+        ? this.props.rosters.rosters[0].roster ?
+          this.props.rosters.rosters[0].roster.roster.map((player) => {
+            return <div>{player.jerseyNumber + '\t\t'} - {player.person.fullName+ '\t\t'} ({player.position.abbreviation})</div>
+          })
+          :<div></div>
+        :<div></div>}
       </div>
     ) 
   }
@@ -52,7 +44,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-
+    obtainOneRosters: bindActionCreators(obtainOneRosters, dispatch),
   };
 }
 

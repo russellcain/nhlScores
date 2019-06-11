@@ -1,7 +1,7 @@
 import { apiRequest, API_SUCCESS, API_FAILURE } from '../../actions/api';
 import { GET_ALL_ROSTERS, GET_ONE_ROSTERS, ROSTERS, setRoster } from '../../actions/rosters';
 export const ALL_ROSTER_API = 'https://statsapi.web.nhl.com/api/v1/teams'
-export const ONE_ROSTER_API = (teamId) => `https://statsapi.web.nhl.com/api/v1/teams/${teamId}`
+export const ONE_ROSTER_API = (teamId) => `https://statsapi.web.nhl.com/api/v1/teams/${teamId}?expand=team.roster`
 export const parseNHLResponse = (data) => {
 	// data.dates[0].games.map((game) => {
  //          // //console.log(game.teams.away.team.name, game.teams.home.team.name)
