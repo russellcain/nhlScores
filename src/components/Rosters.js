@@ -9,36 +9,36 @@ import { obtainOneRosters } from '../actions/rosters';
 export class GameDetails extends React.Component {
   render() {
 
-  	console.log("roosty", this.props.rosters.rosters, this.props.rosters.rosters.map(d => d.name))
-
     return(
 
-      <div>
-          {/*<Button onClick={ () => //console.log("GAME DATA", this.props.gameData.gameData, typeof this.props.gameData.gameData)}>
-          Show State
-          </Button>
-        */}
-          {this.props.rosters.rosters.length > 0 
-        ? this.props.rosters.rosters.map((team) => {
+      <Grid container spacing={3}>
+        <Grid item xs={6}>
+          {this.props.teams.length > 0 
+        ? this.props.teams.map((team) => {
           return <Button onClick={()=> this.props.obtainOneRosters(team.id)}>{team.name}</Button>
         })
 
         : <div></div>}
-        {this.props.rosters.rosters.length > 0
-        ? this.props.rosters.rosters[0].roster ?
-          this.props.rosters.rosters[0].roster.roster.map((player) => {
+        </Grid>
+        <Grid item xs={6}>
+        {this.props.chosenRoster.length > 0
+        ? this.props.chosenRoster[0].roster ?
+          this.props.chosenRoster[0].roster.roster.map((player) => {
             return <div>{player.jerseyNumber + '\t\t'} - {player.person.fullName+ '\t\t'} ({player.position.abbreviation})</div>
           })
           :<div></div>
         :<div></div>}
-      </div>
+        </Grid>
+      </Grid>
+
     ) 
   }
 }
 
 function mapStateToProps(state) {
   return {
-    rosters: state.rosters,
+    chosenRoster: state.rosters.chosenRoster,
+    teams: state.rosters.teams,
   };
 }
 

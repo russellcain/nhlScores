@@ -20,10 +20,10 @@ function App() {
         <Grid item xs={3}>
           <GameDate/>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           <GameDetails/>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={5}>
           <Rosters />
         </Grid>
       </Grid>

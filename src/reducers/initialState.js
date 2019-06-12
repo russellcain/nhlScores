@@ -3,5 +3,8 @@
 export default {
 	currentDate: "",
 	gameData: [],
-	rosters: [],
+	rosters: {
+		teams: [],
+		chosenRoster: [],
+	}
 }

@@ -1,8 +1,8 @@
-import {SET_ROSTERS} from "../actions/rosters";
+import {SET_ROSTERS, SET_TEAMS} from "../actions/rosters";
 import initialState from './initialState';
 
 // Projections
-export default function rosters(state = initialState, action) {
+export default function rosters(state = initialState.rosters, action) {
 
 switch (action.type) { 
 
@@ -10,7 +10,14 @@ switch (action.type) {
 
     	return {
     		...state,
-    		rosters: action.payload,
+    		chosenRoster: action.payload,
+    	}
+
+    case SET_TEAMS:
+
+    	return {
+    		...state,
+    		teams: action.payload,
     	}
 		
 	default:
